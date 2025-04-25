@@ -32,8 +32,11 @@ namespace CodingChallengeApp.Api.Controllers
         public async Task<IActionResult> SubmitSolution(int id, [FromBody] string code)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var user = await _db.Users.FindAsync(userId);
             var challenge = await _db.Challenges.FindAsync(id);
+            
             if (challenge == null) return NotFound();
+            if (user == null) return BadRequest("User not found");
 
             // For now, treat submitted code as output and compare to sample output
             bool isCorrect = code.Trim() == (challenge.SampleOutput?.Trim() ?? "");
@@ -44,7 +47,9 @@ namespace CodingChallengeApp.Api.Controllers
                 ChallengeId = id,
                 Code = code,
                 IsCorrect = isCorrect,
-                SubmittedAt = DateTime.UtcNow
+                SubmittedAt = DateTime.UtcNow,
+                User = user,
+                Challenge = challenge
             };
             _db.Submissions.Add(submission);
             await _db.SaveChangesAsync();
