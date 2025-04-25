@@ -7,12 +7,12 @@ namespace CodingChallengeApp.Data
     {
         public int Id { get; set; }
         [MaxLength(255)]
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public required string Title { get; set; }
+        public required string Description { get; set; }
         [MaxLength(50)]
-        public string Difficulty { get; set; }
+        public required string Difficulty { get; set; }
         public DateTime DateAvailable { get; set; }
-        public string SampleInput { get; set; }
-        public string SampleOutput { get; set; }
+        public required string SampleInput { get; set; }
+        public required string SampleOutput { get; set; }
     }
 } 
