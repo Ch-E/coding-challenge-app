@@ -8,10 +8,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddControllers();
 builder.Services.AddAuthorization();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", 
+        builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Server=(localdb)\\mssqllocaldb;Database=CodingChallengeAppDb;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
@@ -43,11 +52,14 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Coding Challenge API V1");
+        c.RoutePrefix = "swagger";
+    });
 }
 
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -79,6 +91,7 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
+Console.WriteLine("Application started. Available at http://localhost:5104 and https://localhost:7295");
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
