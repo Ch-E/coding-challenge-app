@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,8 +59,19 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+// Ensure the wwwroot directory exists
+var wwwrootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+if (!Directory.Exists(wwwrootPath))
+{
+    Directory.CreateDirectory(wwwrootPath);
+}
+
+// Configure static files
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseCors("AllowAll");
-app.UseHttpsRedirection();
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -91,7 +103,10 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
-Console.WriteLine("Application started. Available at http://localhost:5104 and https://localhost:7295");
+app.MapFallbackToFile("index.html");
+
+Console.WriteLine($"Application started. Available at http://localhost:5104 and https://localhost:7295");
+Console.WriteLine($"Swagger available at http://localhost:5104/swagger");
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
