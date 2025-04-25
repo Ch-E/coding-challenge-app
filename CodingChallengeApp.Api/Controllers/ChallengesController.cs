@@ -17,7 +17,8 @@ namespace CodingChallengeApp.Api.Controllers
         }
 
         [HttpGet("today")]
-        [Authorize]
+        // Temporarily removed for testing
+        // [Authorize]
         public async Task<IActionResult> GetTodayChallenge()
         {
             // Placeholder: fetch today's challenge

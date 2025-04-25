@@ -75,6 +75,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Add a test endpoint directly on the root
+app.MapGet("/", () => "API is running! Go to /swagger for API documentation");
+app.MapGet("/hello", () => "Hello World!");
+app.MapGet("/test", () => new { message = "API Test Endpoint", timestamp = DateTime.Now });
+
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
