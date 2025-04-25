@@ -1,0 +1,83 @@
+@page
+@model CodingChallengeApp.Web.Pages.LeaderboardModel
+@{
+    ViewData["Title"] = "Leaderboard";
+}
+
+<div class="mb-4">
+    <h1>Leaderboard</h1>
+    <p class="lead">See how you rank against other coders.</p>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @Model.ErrorMessage
+    </div>
+}
+
+<div class="card">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs" id="leaderboardTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="global-tab" data-bs-toggle="tab" data-bs-target="#global-tab-pane" type="button" role="tab" aria-controls="global-tab-pane" aria-selected="true">Global</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="monthly-tab" data-bs-toggle="tab" data-bs-target="#monthly-tab-pane" type="button" role="tab" aria-controls="monthly-tab-pane" aria-selected="false">This Month</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="weekly-tab" data-bs-toggle="tab" data-bs-target="#weekly-tab-pane" type="button" role="tab" aria-controls="weekly-tab-pane" aria-selected="false">This Week</button>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="tab-content" id="leaderboardTabContent">
+            <div class="tab-pane fade show active" id="global-tab-pane" role="tabpanel" aria-labelledby="global-tab" tabindex="0">
+                @if (Model.Leaderboard != null && Model.Leaderboard.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>User</th>
+                                    <th>Solved</th>
+                                    <th>Success Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Leaderboard.Count; i++)
+                                {
+                                    var entry = Model.Leaderboard[i];
+                                    var isCurrentUser = Model.CurrentUserId.HasValue && Model.CurrentUserId == entry.UserId;
+                                    <tr class="@(isCurrentUser ? "table-primary" : "")">
+                                        <td>@(i + 1)</td>
+                                        <td>@entry.Username</td>
+                                        <td>@entry.SolvedChallenges</td>
+                                        <td>@entry.SuccessRate.ToString("P0")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        <p class="mb-0">No leaderboard data available yet. Be the first to submit a solution!</p>
+                    </div>
+                }
+            </div>
+            <div class="tab-pane fade" id="monthly-tab-pane" role="tabpanel" aria-labelledby="monthly-tab" tabindex="0">
+                <div class="alert alert-info">
+                    <p class="mb-0">Monthly leaderboard data coming soon...</p>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="weekly-tab-pane" role="tabpanel" aria-labelledby="weekly-tab" tabindex="0">
+                <div class="alert alert-info">
+                    <p class="mb-0">Weekly leaderboard data coming soon...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

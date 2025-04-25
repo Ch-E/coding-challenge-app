@@ -1,55 +1,93 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Coding Challenge Platform";
+    ViewData["Title"] = "Home";
 }
 
 <div class="text-center mb-5">
-    <h1 class="display-4">Coding Challenge Platform</h1>
-    <p class="lead">Test your skills, solve problems, and track your progress</p>
+    <h1 class="display-4 fw-bold">Welcome to Coding Challenge</h1>
+    <p class="lead">Improve your coding skills with daily challenges and compete with other developers.</p>
+</div>
+
+<div class="row g-4 mb-5">
+    <div class="col-md-4">
+        <div class="card h-100 challenge-card">
+            <div class="card-body text-center">
+                <i class="bi bi-code-slash text-primary" style="font-size: 3rem;"></i>
+                <h5 class="card-title mt-3">Daily Challenges</h5>
+                <p class="card-text">Solve a new coding challenge every day to improve your skills and learn new techniques.</p>
+                <a asp-page="/Challenges/Index" class="btn btn-primary">View Challenges</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 challenge-card">
+            <div class="card-body text-center">
+                <i class="bi bi-trophy text-warning" style="font-size: 3rem;"></i>
+                <h5 class="card-title mt-3">Leaderboard</h5>
+                <p class="card-text">Compete with other developers and track your progress on our global leaderboard.</p>
+                <a asp-page="/Leaderboard" class="btn btn-primary">View Leaderboard</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 challenge-card">
+            <div class="card-body text-center">
+                <i class="bi bi-person-badge text-info" style="font-size: 3rem;"></i>
+                <h5 class="card-title mt-3">Profile</h5>
+                <p class="card-text">Track your progress, view your submission history, and update your profile.</p>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a asp-page="/Account/Profile" class="btn btn-primary">View Profile</a>
+                }
+                else
+                {
+                    <a asp-page="/Account/Register" class="btn btn-primary">Create Account</a>
+                }
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="row">
-    <div class="col-md-4 mb-4">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">Available Challenges</h5>
-                <p class="card-text">Explore our collection of coding problems across different difficulty levels.</p>
-                <a href="#" class="btn btn-primary">View Challenges</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 mb-4">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">Leaderboard</h5>
-                <p class="card-text">See how you rank against other developers in solving challenges.</p>
-                <a href="#" class="btn btn-primary">View Leaderboard</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 mb-4">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">My Submissions</h5>
-                <p class="card-text">Track your previous submissions and progress over time.</p>
-                <a href="#" class="btn btn-primary">My Submissions</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row mt-4">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h5>Featured Challenge</h5>
+                <h5 class="mb-0">How It Works</h5>
             </div>
             <div class="card-body">
-                <h5 class="card-title">Array Sum Pairs</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Difficulty: Medium</h6>
-                <p class="card-text">Find all pairs of integers in an array that sum to a specific target value.</p>
-                <a href="#" class="btn btn-primary">Try This Challenge</a>
+                <ol class="mb-0">
+                    <li class="mb-2">Create an account or login to your existing account</li>
+                    <li class="mb-2">Browse available challenges or check today's featured challenge</li>
+                    <li class="mb-2">Write your solution in the online code editor</li>
+                    <li class="mb-2">Submit your solution to see if it passes all test cases</li>
+                    <li class="mb-2">Compare your solution with others and learn new approaches</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Today's Challenge</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.TodayChallenge != null)
+                {
+                    <h5 class="card-title">@Model.TodayChallenge.Title</h5>
+                    <p class="mb-2">
+                        <span class="badge bg-secondary">
+                            @Model.TodayChallenge.Difficulty
+                        </span>
+                    </p>
+                    <p class="card-text">@(Model.TodayChallenge.Description?.Substring(0, Math.Min(150, Model.TodayChallenge.Description.Length)))...</p>
+                    <a asp-page="/Challenges/Details" asp-route-id="@Model.TodayChallenge.Id" class="btn btn-primary">Solve Challenge</a>
+                }
+                else
+                {
+                    <p class="card-text">No challenge available for today yet. Check back later!</p>
+                    <a asp-page="/Challenges/Index" class="btn btn-outline-primary">Browse All Challenges</a>
+                }
             </div>
         </div>
     </div>

@@ -1,0 +1,66 @@
+@page
+@model CodingChallengeApp.Web.Pages.Challenges.IndexModel
+@{
+    ViewData["Title"] = "Challenges";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Coding Challenges</h1>
+    <div class="d-flex align-items-center">
+        <div class="dropdown me-2">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="difficultyDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                @(string.IsNullOrEmpty(Model.DifficultyFilter) ? "All Difficulties" : Model.DifficultyFilter)
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="difficultyDropdown">
+                <li><a class="dropdown-item" asp-page="./Index">All Difficulties</a></li>
+                <li><a class="dropdown-item" asp-page="./Index" asp-route-difficulty="Easy">Easy</a></li>
+                <li><a class="dropdown-item" asp-page="./Index" asp-route-difficulty="Medium">Medium</a></li>
+                <li><a class="dropdown-item" asp-page="./Index" asp-route-difficulty="Hard">Hard</a></li>
+            </ul>
+        </div>
+        <div>
+            <a asp-page="./Index" asp-route-today="true" class="btn btn-primary">
+                <i class="bi bi-calendar-event me-1"></i> Today's Challenge
+            </a>
+        </div>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @Model.ErrorMessage
+    </div>
+}
+
+@if (Model.Challenges != null && Model.Challenges.Any())
+{
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var challenge in Model.Challenges)
+        {
+            <div class="col">
+                <div class="card h-100 challenge-card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span class="badge @(challenge.Difficulty == "Easy" ? "bg-success" : challenge.Difficulty == "Medium" ? "bg-warning" : "bg-danger")">
+                            @challenge.Difficulty
+                        </span>
+                        <small class="text-muted">@challenge.DateAvailable.ToString("MMM dd, yyyy")</small>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@challenge.Title</h5>
+                        <p class="card-text">@(challenge.Description?.Substring(0, Math.Min(150, challenge.Description.Length)))...</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0 text-end">
+                        <a asp-page="./Details" asp-route-id="@challenge.Id" class="btn btn-outline-primary">View Challenge</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        <p class="mb-0">No challenges found. Please check back later for new challenges.</p>
+    </div>
+} 

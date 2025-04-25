@@ -1,0 +1,51 @@
+@page
+@model CodingChallengeApp.Web.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="h4 mb-0">Login</h1>
+            </div>
+            <div class="card-body">
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @Model.ErrorMessage
+                    </div>
+                }
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label asp-for="LoginInput.Email" class="form-label">Email</label>
+                        <input asp-for="LoginInput.Email" class="form-control" />
+                        <span asp-validation-for="LoginInput.Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="LoginInput.Password" class="form-label">Password</label>
+                        <input asp-for="LoginInput.Password" type="password" class="form-control" />
+                        <span asp-validation-for="LoginInput.Password" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input asp-for="LoginInput.RememberMe" type="checkbox" class="form-check-input" />
+                        <label asp-for="LoginInput.RememberMe" class="form-check-label">Remember me</label>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+
+                <div class="mt-3">
+                    <p>Don't have an account? <a asp-page="./Register">Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} 
