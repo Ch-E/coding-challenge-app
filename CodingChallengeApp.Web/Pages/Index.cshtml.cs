@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net.Http.Json;
 using System.Text.Json;
+using CodingChallengeApp.Web.Models;
 
 namespace CodingChallengeApp.Web.Pages;
 
@@ -18,7 +19,7 @@ public class IndexModel : PageModel
         _configuration = configuration;
     }
 
-    public Challenge? TodayChallenge { get; set; }
+    public ChallengeDto? TodayChallenge { get; set; }
 
     public async Task OnGetAsync()
     {
@@ -29,7 +30,7 @@ public class IndexModel : PageModel
             
             if (response.IsSuccessStatusCode)
             {
-                TodayChallenge = await response.Content.ReadFromJsonAsync<Challenge>();
+                TodayChallenge = await response.Content.ReadFromJsonAsync<ChallengeDto>();
             }
             else
             {
@@ -41,15 +42,4 @@ public class IndexModel : PageModel
             _logger.LogError(ex, "Error retrieving today's challenge");
         }
     }
-}
-
-public class Challenge
-{
-    public int Id { get; set; }
-    public string? Title { get; set; }
-    public string? Description { get; set; }
-    public string? Difficulty { get; set; }
-    public DateTime DateAvailable { get; set; }
-    public string? SampleInput { get; set; }
-    public string? SampleOutput { get; set; }
 }

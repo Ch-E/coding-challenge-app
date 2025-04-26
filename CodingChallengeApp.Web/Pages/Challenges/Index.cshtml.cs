@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Security.Claims;
+using CodingChallengeApp.Web.Models;
 
 namespace CodingChallengeApp.Web.Pages.Challenges
 {
@@ -77,16 +78,5 @@ namespace CodingChallengeApp.Web.Pages.Challenges
                 _logger.LogError(ex, "Error loading challenges");
             }
         }
-    }
-
-    public class ChallengeDto
-    {
-        public int Id { get; set; }
-        public string? Title { get; set; }
-        public string? Description { get; set; }
-        public string? Difficulty { get; set; }
-        public DateTime DateAvailable { get; set; }
-        public string? SampleInput { get; set; }
-        public string? SampleOutput { get; set; }
     }
 } 
