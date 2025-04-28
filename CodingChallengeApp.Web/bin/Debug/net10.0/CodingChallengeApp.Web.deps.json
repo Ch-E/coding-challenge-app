@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "CodingChallengeApp.Web/1.0.0": {
+        "runtime": {
+          "CodingChallengeApp.Web.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CodingChallengeApp.Web/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

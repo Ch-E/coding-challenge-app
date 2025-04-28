@@ -1,0 +1,57 @@
+@page
+@model CodingChallengeApp.Web.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="h4 mb-0">Create a New Account</h1>
+            </div>
+            <div class="card-body">
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @Model.ErrorMessage
+                    </div>
+                }
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label asp-for="RegisterInput.Username" class="form-label">Username</label>
+                        <input asp-for="RegisterInput.Username" class="form-control" />
+                        <span asp-validation-for="RegisterInput.Username" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="RegisterInput.Email" class="form-label">Email</label>
+                        <input asp-for="RegisterInput.Email" class="form-control" />
+                        <span asp-validation-for="RegisterInput.Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="RegisterInput.Password" class="form-label">Password</label>
+                        <input asp-for="RegisterInput.Password" type="password" class="form-control" />
+                        <span asp-validation-for="RegisterInput.Password" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="RegisterInput.ConfirmPassword" class="form-label">Confirm Password</label>
+                        <input asp-for="RegisterInput.ConfirmPassword" type="password" class="form-control" />
+                        <span asp-validation-for="RegisterInput.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+
+                <div class="mt-3">
+                    <p>Already have an account? <a asp-page="./Login">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} 

@@ -1,0 +1,15 @@
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\bin\Debug\net9.0\CodingChallengeApp.Data.deps.json
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\bin\Debug\net9.0\CodingChallengeApp.Data.runtimeconfig.json
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\bin\Debug\net9.0\CodingChallengeApp.Data.dll
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\bin\Debug\net9.0\CodingChallengeApp.Data.pdb
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\obj\Debug\net9.0\CodingChallengeApp.Data.csproj.AssemblyReference.cache
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\obj\Debug\net9.0\CodingChallengeApp.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\obj\Debug\net9.0\CodingChallengeApp.Data.AssemblyInfoInputs.cache
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\obj\Debug\net9.0\CodingChallengeApp.Data.AssemblyInfo.cs
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\obj\Debug\net9.0\CodingChallengeApp.Data.csproj.CoreCompileInputs.cache
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\obj\Debug\net9.0\CodingChallengeApp.Data.sourcelink.json
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\obj\Debug\net9.0\CodingChallengeApp.Data.dll
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\obj\Debug\net9.0\refint\CodingChallengeApp.Data.dll
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\obj\Debug\net9.0\CodingChallengeApp.Data.pdb
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\obj\Debug\net9.0\CodingChallengeApp.Data.genruntimeconfig.cache
+C:\Users\charl\OneDrive\Documents\Dev\repos\coding-challenge-app\CodingChallengeApp.Data\obj\Debug\net9.0\ref\CodingChallengeApp.Data.dll

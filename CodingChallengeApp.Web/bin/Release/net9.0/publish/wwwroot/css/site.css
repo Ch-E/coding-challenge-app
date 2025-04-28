@@ -1,0 +1,109 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+  background-color: #1e1e1e !important;
+  border-color: #333 !important;
+}
+
+/* Dark theme customizations */
+.card {
+  background-color: #1e1e1e;
+  border-color: #333;
+}
+
+.form-control, .form-select {
+  background-color: #2d2d2d;
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+  border-color: #0d6efd;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+}
+
+.btn-outline-primary {
+  color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.table {
+  color: #e0e0e0;
+}
+
+.code-editor {
+  font-family: 'Consolas', 'Courier New', monospace;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #333;
+}
+
+.challenge-card {
+  transition: transform 0.2s;
+}
+
+.challenge-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.difficulty-easy {
+  color: #28a745;
+}
+
+.difficulty-medium {
+  color: #ffc107;
+}
+
+.difficulty-hard {
+  color: #dc3545;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
