@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/13fa79fc-202d-467b-82e6-070ae22be80c/resourceGroups/CodeChallenge-Data_group/providers/Microsoft.Web/sites/CodeChallenge-Data",
+    "appService.deploySubpath": "publish"
+}
