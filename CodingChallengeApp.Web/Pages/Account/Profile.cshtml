@@ -1,0 +1,139 @@
+@page
+@model CodingChallengeApp.Web.Pages.Account.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Profile Information</h4>
+                <a href="#" class="btn btn-sm btn-outline-primary">Edit</a>
+            </div>
+            <div class="card-body">
+                @if (Model.UserInfo != null)
+                {
+                    <div class="mb-3 text-center">
+                        <div class="display-1 text-center mb-2">
+                            <i class="bi bi-person-circle text-primary"></i>
+                        </div>
+                        <h5 class="mb-1">@Model.UserInfo.Username</h5>
+                        <p class="text-muted mb-0">@Model.UserInfo.Email</p>
+                        <small class="text-muted">Member since @Model.UserInfo.CreatedAt.ToString("MMM dd, yyyy")</small>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Total Submissions:</span>
+                        <span>@Model.Stats?.TotalSubmissions</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Correct Submissions:</span>
+                        <span>@Model.Stats?.CorrectSubmissions</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Success Rate:</span>
+                        <span>@(Model.Stats?.SuccessRate.ToString("P0"))</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning">
+                        Could not load profile information. Please try again later.
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Stats</h4>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <h5>Difficulty Breakdown</h5>
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="difficulty-easy">Easy</span>
+                        <span>@Model.Stats?.EasyCount</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="difficulty-medium">Medium</span>
+                        <span>@Model.Stats?.MediumCount</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="difficulty-hard">Hard</span>
+                        <span>@Model.Stats?.HardCount</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h5>Ranking</h5>
+                    <div class="d-flex justify-content-between">
+                        <span>Global Rank</span>
+                        <span>#@Model.Stats?.Rank</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Recent Submissions</h4>
+            </div>
+            <div class="card-body">
+                @if (Model.Submissions != null && Model.Submissions.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Challenge</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var submission in Model.Submissions)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a asp-page="/Challenges/Details" asp-route-id="@submission.ChallengeId">
+                                                @submission.ChallengeTitle
+                                            </a>
+                                        </td>
+                                        <td>@submission.SubmittedAt.ToString("MMM dd, yyyy HH:mm")</td>
+                                        <td>
+                                            @if (submission.IsCorrect)
+                                            {
+                                                <span class="badge bg-success">Correct</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger">Incorrect</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a asp-page="/Challenges/Submission" asp-route-id="@submission.Id" class="btn btn-sm btn-outline-secondary">
+                                                View
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        <p class="mb-0">You haven't made any submissions yet.</p>
+                        <a asp-page="/Challenges/Index" class="btn btn-primary mt-3">Try a Challenge</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div> 
