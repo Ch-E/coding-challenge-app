@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
+    <AssemblyName>CodingChallengeApp.Api</AssemblyName>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>

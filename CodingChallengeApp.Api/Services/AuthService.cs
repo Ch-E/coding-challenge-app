@@ -146,7 +146,7 @@ namespace CodingChallengeApp.Api.Services
         private AuthResponse GenerateAuthResponse(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+            var key = _configuration["Jwt:Key"] ?? throw new InvalidOperationException("JWT Key not configured");
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]
@@ -156,7 +156,7 @@ namespace CodingChallengeApp.Api.Services
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(key),
+                    new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
                     SecurityAlgorithms.HmacSha256Signature)
             };
 

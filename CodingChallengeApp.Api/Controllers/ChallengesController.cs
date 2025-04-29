@@ -88,8 +88,10 @@ namespace CodingChallengeApp.Api.Controllers
         [Authorize]
         public async Task<IActionResult> SubmitSolution(int id, [FromBody] string code)
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            var user = await _context.Users.FindAsync(userId);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? 
+                throw new InvalidOperationException("User ID not found in claims");
+            var userIdInt = int.Parse(userId);
+            var user = await _context.Users.FindAsync(userIdInt);
             var challenge = await _context.Challenges.FindAsync(id);
             
             if (challenge == null) return NotFound();
@@ -100,7 +102,7 @@ namespace CodingChallengeApp.Api.Controllers
 
             var submission = new Submission
             {
-                UserId = userId,
+                UserId = userIdInt,
                 ChallengeId = id,
                 Code = code,
                 IsCorrect = isCorrect,
