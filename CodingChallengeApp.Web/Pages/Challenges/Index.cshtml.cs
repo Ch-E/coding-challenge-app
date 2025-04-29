@@ -47,7 +47,15 @@ namespace CodingChallengeApp.Web.Pages.Challenges
                     if (response.IsSuccessStatusCode)
                     {
                         var todayChallenge = await response.Content.ReadFromJsonAsync<ChallengeDto>();
-                        Challenges = new List<ChallengeDto> { todayChallenge };
+                        if (todayChallenge != null)
+                        {
+                            Challenges = new List<ChallengeDto> { todayChallenge };
+                        }
+                        else
+                        {
+                            Challenges = new List<ChallengeDto>();
+                            ErrorMessage = "No challenge available for today.";
+                        }
                     }
                 }
                 else

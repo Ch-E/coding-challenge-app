@@ -6,8 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
     <AssemblyName>CodingChallengeApp.Api</AssemblyName>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +22,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0-preview.1.24081.2" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="7.4.0" />
     <PackageReference Include="SendGrid" Version="9.29.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-preview.1.24081.5" />
   </ItemGroup>
 
   <ItemGroup>
