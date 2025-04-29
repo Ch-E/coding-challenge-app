@@ -6,6 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
     <AssemblyName>CodingChallengeApp.Api</AssemblyName>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,5 +32,9 @@
   <ItemGroup>
     <ProjectReference Include="..\CodingChallengeApp.Data\CodingChallengeApp.Data.csproj" />
   </ItemGroup>
+
+  <Target Name="FixAppHost" AfterTargets="Build">
+    <Delete Files="$(OutputPath)apphost" />
+  </Target>
 
 </Project>
