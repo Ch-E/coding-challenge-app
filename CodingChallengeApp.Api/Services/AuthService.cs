@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CodingChallengeApp.Api.Models;
 using CodingChallengeApp.Data;
+using CodingChallengeApp.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -53,12 +54,14 @@ namespace CodingChallengeApp.Api.Services
                 var user = new User
                 {
                     Email = request.Email,
+                    Username = request.Email.Split('@')[0], // Set username from email
                     PasswordHash = BC.HashPassword(request.Password),
                     FirstName = request.FirstName,
                     LastName = request.LastName,
                     IsEmailVerified = false,
                     EmailVerificationToken = Guid.NewGuid().ToString(),
-                    EmailVerificationTokenExpiry = DateTime.UtcNow.AddHours(24)
+                    EmailVerificationTokenExpiry = DateTime.UtcNow.AddHours(24),
+                    CreatedAt = DateTime.UtcNow
                 };
 
                 _logger.LogInformation("Adding new user with email {Email}", request.Email);
