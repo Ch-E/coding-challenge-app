@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CodingChallengeApp.Api.Models;
 using CodingChallengeApp.Data;
-using CodingChallengeApp.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
