@@ -7,19 +7,24 @@ namespace CodingChallengeApp.Data
     {
         public int Id { get; set; }
 
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; } = string.Empty;
-
+        [StringLength(100)]
         public string? Username { get; set; }
 
         [Required]
+        [EmailAddress]
+        [StringLength(255)]
+        public string Email { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(255)]
         public string PasswordHash { get; set; } = string.Empty;
 
         [Required]
+        [StringLength(100)]
         public string FirstName { get; set; } = string.Empty;
 
         [Required]
+        [StringLength(100)]
         public string LastName { get; set; } = string.Empty;
 
         public bool IsEmailVerified { get; set; }
@@ -28,7 +33,7 @@ namespace CodingChallengeApp.Data
 
         public DateTime? EmailVerificationTokenExpiry { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? CreatedAt { get; set; }
 
         public DateTime? LastLoginAt { get; set; }
     }
